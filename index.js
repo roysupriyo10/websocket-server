@@ -1,16 +1,4 @@
 (async () => {
-  const ws = await connectToServer()
-  document.body.onmousemove = e => {
-    const messageBody = { x: e.clientX, y: e.clientY }
-    ws.send(JSON.stringify(messageBody))
-  }
-
-  ws.onmessage = e => {
-    const messageBody = JSON.parse(e.data);
-    const cursor = getOrCreateCursorFor(messageBody);
-    cursor.style.transform = `translate(${messageBody.x}px, ${messageBody.y}px)`;
-  }
-
   const connectToServer = async () => {
     const ws = new WebSocket(`ws://localhost:7070/ws`)
     return new Promise((resolve, reject) => {
@@ -40,4 +28,16 @@
 
     return cursor;
   }
+  const ws = await connectToServer()
+  document.body.onmousemove = e => {
+    const messageBody = { x: e.clientX, y: e.clientY }
+    ws.send(JSON.stringify(messageBody))
+  }
+
+  ws.onmessage = e => {
+    const messageBody = JSON.parse(e.data);
+    const cursor = getOrCreateCursorFor(messageBody);
+    cursor.style.transform = `translate(${messageBody.x}px, ${messageBody.y}px)`;
+  }
+
 })()

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/roysupriyo10/websocket-server#readme",
   "dependencies": {
+    "uuid": "^9.0.0",
     "ws": "^8.13.0"
   }
 }

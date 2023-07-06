@@ -11,19 +11,19 @@ syncSocket.on('connection', ws => {
 
   
   clients.set(ws, id)
-  console.log(clients.keys())
+  // console.log(clients.keys())
   ws.on('message', data => {
     const message = JSON.parse(data)
 
     if (message.type === 'rangeUpdate') {
-      console.log('rangeUpdate')
-      console.log(message.data)
+      // console.log('rangeUpdate')
+      // console.log(message.data)
     }
     else if (message.type === 'lineUpdate') {
-      console.log('lineUpdate')
+      // console.log('lineUpdate')
     }
 
-    console.log(message.syncClientId);
+    // console.log(message.syncClientId);
     // console.log(message)
     // const outbound = JSON.stringify(message);
   
@@ -33,7 +33,7 @@ syncSocket.on('connection', ws => {
   })
 
   ws.on('close', () => {
-    console.log('closed')
+    // console.log('closed')
     clients.delete(ws)
   })
 })
